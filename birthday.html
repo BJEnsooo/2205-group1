@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>BirthdayBaby</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Dancing+Script:wght@700&display=swap" rel="stylesheet" />
+
+  <!-- Animate.css for animations -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <!-- Main styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Balloons rising -->
+  <div class="balloons-container" id="balloonsContainer" aria-hidden="true">
+    <div class="balloon" style="left: 5%; background: #FF4FA3; animation-delay: 0s;"></div>
+    <div class="balloon" style="left: 15%; background: #FFC94A; animation-delay: 0.3s;"></div>
+    <div class="balloon" style="left: 28%; background: #FFD6E8; animation-delay: 0.7s;"></div>
+    <div class="balloon" style="left: 40%; background: #A3D8F0; animation-delay: 0.1s;"></div>
+    <div class="balloon" style="left: 55%; background: #B983FF; animation-delay: 0.5s;"></div>
+    <div class="balloon" style="left: 68%; background: #FF8DA1; animation-delay: 0.9s;"></div>
+    <div class="balloon" style="left: 80%; background: #FFB347; animation-delay: 0.2s;"></div>
+    <div class="balloon" style="left: 92%; background: #FF4FA3; animation-delay: 0.6s;"></div>
+  </div>
+
+  <!-- Background orbs -->
+  <div class="bg-orbs" aria-hidden="true"></div>
+
+  <!-- Sparkle particles background -->
+  <div class="sparkle-bg" aria-hidden="true">
+    <div class="sparkle-particle" style="top:10%;left:5%;animation-delay:0s;"></div>
+    <div class="sparkle-particle" style="top:20%;left:25%;animation-delay:0.5s;"></div>
+    <div class="sparkle-particle" style="top:15%;left:50%;animation-delay:1s;"></div>
+    <div class="sparkle-particle" style="top:30%;left:75%;animation-delay:1.5s;"></div>
+    <div class="sparkle-particle" style="top:50%;left:90%;animation-delay:0.3s;"></div>
+    <div class="sparkle-particle" style="top:60%;left:15%;animation-delay:0.8s;"></div>
+    <div class="sparkle-particle" style="top:70%;left:40%;animation-delay:1.2s;"></div>
+    <div class="sparkle-particle" style="top:80%;left:65%;animation-delay:0.6s;"></div>
+    <div class="sparkle-particle" style="top:85%;left:85%;animation-delay:1.8s;"></div>
+    <div class="sparkle-particle" style="top:45%;left:55%;animation-delay:2s;"></div>
+  </div>
+
+  <!-- Confetti canvas -->
+  <canvas id="confetti" aria-hidden="true"></canvas>
+
+  <main class="app" id="app">
+
+    <!-- PAGE 0 (GATE) -->
+    <section class="page active" data-page="0" aria-label="Opening page with surprise gate">
+      <div class="gate card">
+        <div class="gate-decor" aria-hidden="true">
+          <div class="gift-float" style="top: -20px; left: 20%; animation-delay: 0s;"></div>
+          <div class="gift-float" style="top: -20px; right: 20%; animation-delay: 0.5s;"></div>
+          <div class="gift-float" style="bottom: -20px; left: 10%; animation-delay: 1s;"></div>
+          <div class="gift-float" style="bottom: -20px; right: 10%; animation-delay: 1.5s;"></div>
+          <div class="sparkle" style="top: 20%; left: 15%;"></div>
+          <div class="sparkle" style="top: 30%; right: 15%;"></div>
+          <div class="sparkle" style="bottom: 25%; left: 25%;"></div>
+          <div class="sparkle" style="bottom: 15%; right: 25%;"></div>
+        </div>
+        <h1 class="gateTitle animate__animated animate__fadeIn" id="gateTitle">A surprise for you</h1>
+        <p class="gateSub">Tap to open</p>
+        <button class="btn primary pulse-btn animate__animated animate__fadeInUp" id="openGateBtn" aria-label="Open the surprise gate">Open</button>
+        <audio id="gateAudio" preload="auto" aria-hidden="true">
+          <source src="bday_song.mp3" type="audio/mpeg" />
+        </audio>
+      </div>
+    </section>
+
+    <!-- PAGE 1 (LANDING) -->
+    <section class="page" data-page="1" aria-label="Birthday greeting page">
+      <div class="hero">
+        <div class="hero-left">
+          <h1 class="title-stacked">
+            <span class="title-line animate__animated animate__fadeInDown animate__slow">HAPPY</span>
+            <span class="title-line animate__animated animate__fadeInUp animate__slow">BIRTHDAY</span>
+          </h1>
+          <p class="subtitle animate__animated animate__fadeInUp animate__delay-1s">My Baby Khateleene / Kulot</p>
+          <button class="btn primary animate__animated animate__fadeInUp animate__delay-2s" data-action="next" aria-label="Continue to next section">Continue</button>
+        </div>
+        <div class="hero-right">
+          <div class="hero-right-inner">
+            <div class="floating-orb" style="top: 10%; left: -10%; background: #FF4FA3;"></div>
+            <div class="floating-orb" style="top: 20%; right: -5%; background: #FFC94A;"></div>
+            <div class="floating-orb" style="bottom: 15%; left: 0%; background: #FFD6E8;"></div>
+            <div class="mascot-img animate__animated animate__fadeInUp animate__delay-3s" aria-label="Mascot with party hat and balloon">
+              <img src="n1.png" alt="Mascot with birthday hat" />
+            </div>
+            <div class="heart-placeholder animate__animated animate__heartBeat animate__delay-4s animate__infinite" aria-label="Heart shaped photo of Khateleene">
+              <img src="bb.jpg" alt="Khateleene's photo" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="falling-confetti" aria-hidden="true"></div>
+    </section>
+
+    <!-- PAGE 2 (MEMORY LANE) -->
+    <section class="page" data-page="2" aria-label="Memory lane with pictures">
+      <header class="topbar">
+        <h2>Memory Lane</h2>
+        <button class="btn ghost" data-action="back" aria-label="Go back">Back</button>
+      </header>
+
+      <div class="card big memory-card">
+        <div class="slider" role="region" aria-live="polite" aria-label="Memory photo slider">
+          <button class="btn slider-btn prev-btn" data-action="prevSlide" aria-label="Previous memory photo">&#10094;</button>
+          <figure class="photo">
+            <img id="slideImg" src="https://via.placeholder.com/600x400/FFD6E8/FF4FA3?text=Memory+1" alt="Memory photo" />
+            <figcaption id="slideCaption">Our first cute moment together.</figcaption>
+          </figure>
+          <button class="btn slider-btn next-btn" data-action="nextSlide" aria-label="Next memory photo">&#10095;</button>
+        </div>
+
+        <div class="slide-dots" id="slideDots"></div>
+
+        <div class="row memory-row">
+          <button class="btn secondary" data-action="next" aria-label="Proceed to next section">Next</button>
+        </div>
+
+        <p class="note">Add your photos to the slides array in <code>app.js</code></p>
+      </div>
+    </section>
+
+    <!-- PAGE 3 (REASONS) -->
+    <section class="page" data-page="3" aria-label="Reasons I Love You">
+      <header class="topbar">
+        <h2>Reasons I Love You</h2>
+        <button class="btn ghost" data-action="back" aria-label="Go back">Back</button>
+      </header>
+      <div class="card">
+        <p class="small">Tap to reveal each reason:</p>
+        <ul class="reasons" id="reasonsList"></ul>
+
+        <div class="row">
+          <button class="btn secondary" id="revealBtn" aria-label="Reveal next reason">Reveal reason</button>
+          <button class="btn primary" data-action="next" aria-label="Go to final surprise">Surprise awaits</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 4 (SURPRISE) -->
+    <section class="page" data-page="4" aria-label="The surprise gift">
+      <header class="topbar">
+        <h2>The Surprise</h2>
+        <button class="btn ghost" data-action="back" aria-label="Go back">Back</button>
+      </header>
+      <div class="card center surprise-card">
+        <div class="gift-wrap">
+          <button class="giftPro" id="giftBtn" aria-label="Open gift box">
+            <span class="giftPro-lid"></span>
+            <span class="giftPro-box"></span>
+            <span class="giftPro-bow"></span>
+            <span class="giftPro-shine" aria-hidden="true"></span>
+          </button>
+          <p class="small">Tap the gift</p>
+        </div>
+
+        <div class="hidden-message" id="hiddenMessage" style="display: none;">
+          <h3 class="accent">Surprise!</h3>
+          <p class="msg">
+            I'm so grateful for you. Today is all about celebrating you—your smile,
+            your kindness, and everything you are.
+          </p>
+
+          <div class="cakeCard" aria-label="Birthday cake with candle">
+            <p class="small">Make a wish, then blow the candle.</p>
+            <div class="cake" id="cake" aria-label="Birthday cake with lit candle and flame">
+              <div class="flame" id="flame"></div>
+              <div class="candle"></div>
+              <div class="cakeTop"></div>
+              <div class="cakeBase"></div>
+              <div class="sprinkles" aria-hidden="true"></div>
+            </div>
+
+            <div class="row">
+              <button class="btn secondary" id="blowBtn" aria-label="Blow candle">Blow candle</button>
+            </div>
+          </div>
+
+          <div class="row">
+            <button class="btn secondary" id="musicBtn" aria-label="Play or pause background music">Play music</button>
+            <button class="btn primary" data-action="next" aria-label="Read love letter">Read my letter</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 5 (LETTER) -->
+    <section class="page" data-page="5" aria-label="Love letter">
+      <header class="topbar">
+        <h2>For You</h2>
+        <button class="btn ghost" data-action="back" aria-label="Go back">Back</button>
+      </header>
+
+      <div class="card letter">
+        <p class="small">My love letter:</p>
+        <div class="letter-body" id="letterBody">
+          <p>Happy birthday, love.</p>
+          <p>
+            Thank you for being my comfort, my happiness, and my safe place.
+            I'm proud of you, always. I'll keep choosing you—today and every day.
+          </p>
+          <p>With all my love,</p>
+          <p><strong>— Thomas</strong></p>
+        </div>
+
+        <div class="row">
+          <button class="btn secondary" id="replayBtn" aria-label="Replay surprise">Replay</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== SOUND EFFECTS ===== -->
+  <audio id="bgMusic" loop preload="auto" aria-hidden="true">
+    <source src="./audio/background-music.mp3" type="audio/mpeg" />
+  </audio>
+  <audio id="giftSound" preload="auto" aria-hidden="true">
+    <source src="./audio/gift-open.mp3" type="audio/mpeg" />
+  </audio>
+  <audio id="blowSound" preload="auto" aria-hidden="true">
+    <source src="./audio/candle-blow.mp3" type="audio/mpeg" />
+  </audio>
+  <audio id="confettiSound" preload="auto" aria-hidden="true">
+    <source src="./audio/confetti.mp3" type="audio/mpeg" />
+  </audio>
+  <audio id="pageTurnSound" preload="auto" aria-hidden="true">
+    <source src="./audio/page-turn.mp3" type="audio/mpeg" />
+  </audio>
+  <audio id="revealSound" preload="auto" aria-hidden="true">
+    <source src="./audio/reveal.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- Main app script -->
+  <script src="app.js"></script>
+</body>
+</html>
