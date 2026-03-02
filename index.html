@@ -1,70 +1,491 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mark Joseph Canillas - Profile</title>
-    
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-        .profile-pic {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin-bottom: 20px;
-            border: 3px solid #333;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        h1 {
-            color: #333;
-            text-align: center;
-        }
-        .details {
-            background-color: #fff;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .fun-fact, .motto {
-            background-color: #fff;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ScaleMatics | Math Learning Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <h1>Mark Joseph Canillas</h1>
-    <img src="https://via.placeholder.com/150" alt="Profile Picture" class="profile-pic"> <!-- Replace with your actual image URL -->
 
-    <div class="details">
-        <h2>Details</h2>
-        <ul>
-            <li><strong>Gender:</strong> Male</li>
-            <li><strong>Age:</strong> 12 years old</li>
-            <li><strong>Year:</strong> 2nd Year College - BSIT (Bachelor of Science in Information Technology)</li>
-        </ul>
+  <!-- ===== HEADER / NAVBAR ===== -->
+  <header class="main-header" id="mainHeader">
+    <div class="header-inner">
+      <!-- Logo -->
+      <div class="header-logo" id="headerLogoBtn">
+        <div class="sm-icon">
+          <span class="sm-icon-grid">
+            <span>+</span><span>-</span>
+            <span>&times;</span><span>&divide;</span>
+          </span>
+        </div>
+        <span class="header-logo-text">ScaleMatics</span>
+      </div>
+
+      <!-- Nav Links (desktop) -->
+      <nav class="header-nav" id="headerNav">
+        <a href="#" class="nav-link nav-link--active" data-screen="screenDashboard">Home</a>
+        <a href="#" class="nav-link" data-screen="screenLearn">Learn</a>
+        <a href="#" class="nav-link" data-screen="screenChallenge">Daily Challenge</a>
+        <a href="#" class="nav-link" data-screen="screenLeaderboard">Leaderboard</a>
+        <a href="#" class="nav-link" data-screen="screenShop">Shop</a>
+        <a href="#" class="nav-link" data-screen="screenCommunity">Community</a>
+      </nav>
+
+      <!-- Right side: stats + profile -->
+      <div class="header-right">
+        <div class="header-stats">
+          <div class="header-stat">
+            <span class="stat-icon stat-icon--coin">&#9679;</span>
+            <span class="stat-value" id="userCoins">500</span>
+          </div>
+          <div class="header-stat">
+            <span class="stat-icon stat-icon--bolt"><i class="fa-solid fa-bolt"></i></span>
+            <span class="stat-value" id="userXP">0</span>
+          </div>
+          <div class="header-stat">
+            <span class="stat-icon stat-icon--fire"><i class="fa-solid fa-fire"></i></span>
+            <span class="stat-value" id="userStreak">0</span>
+          </div>
+        </div>
+        <div class="header-profile" id="headerProfile">
+          <div class="profile-avatar">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <div class="profile-info">
+            <span class="profile-name" id="profileName">Guest</span>
+            <span class="profile-rank" id="profileRank">Novice</span>
+          </div>
+        </div>
+        <!-- Mobile menu toggle -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
 
-    <div class="fun-fact">
-        <h2>Fun Fact About Me</h2>
-        <p>I am very impatient so don't make me wait or I'll turn you into Barney, most of the time I love coding but I'm lazy to code, my dream is to become an IT professional but if not, I'll just marry an IT professional (hopefully I succeed in this path, it's a waste of the years I've spent).</p>
+    <!-- Mobile nav dropdown -->
+    <div class="mobile-nav mobile-nav--hidden" id="mobileNav">
+      <a href="#" class="mobile-nav-link mobile-nav-link--active" data-screen="screenDashboard">Home</a>
+      <a href="#" class="mobile-nav-link" data-screen="screenLearn">Learn</a>
+      <a href="#" class="mobile-nav-link" data-screen="screenChallenge">Daily Challenge</a>
+      <a href="#" class="mobile-nav-link" data-screen="screenLeaderboard">Leaderboard</a>
+      <a href="#" class="mobile-nav-link" data-screen="screenShop">Shop</a>
+      <a href="#" class="mobile-nav-link" data-screen="screenCommunity">Community</a>
     </div>
+  </header>
 
-    <div class="motto">
-        <h2>Motto</h2>
-        <p>The patient person gets tired when they grow up, I'm the testimony to that. JK</p>
+  <!-- ===== MAIN APP CONTAINER ===== -->
+  <main class="app-main">
+
+    <!-- ===== LANDING SCREEN ===== -->
+    <section class="screen screen--active" id="screenLanding">
+      <div class="landing-wrapper">
+        <div class="landing-card">
+          <div class="landing-logo">
+            <div class="sm-icon sm-icon--large">
+              <span class="sm-icon-grid">
+                <span>+</span><span>-</span>
+                <span>&times;</span><span>&divide;</span>
+              </span>
+            </div>
+          </div>
+          <h1 class="landing-title">ScaleMatics</h1>
+          <p class="landing-subtitle">For people who still count with their fingers.</p>
+          <button class="btn btn--primary btn--lg" id="btnStart">Get Started</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== AUTH SCREEN ===== -->
+    <section class="screen screen--hidden" id="screenAuth">
+      <div class="auth-card">
+        <div class="auth-header">
+          <div class="sm-icon sm-icon--medium">
+            <span class="sm-icon-grid">
+              <span>+</span><span>-</span>
+              <span>&times;</span><span>&divide;</span>
+            </span>
+          </div>
+          <h1 class="auth-brand">ScaleMatics</h1>
+        </div>
+
+        <div class="auth-toggle">
+          <button class="auth-toggle-btn auth-toggle-btn--active" id="tabSignup">Sign Up</button>
+          <button class="auth-toggle-btn" id="tabLogin">Log In</button>
+        </div>
+
+        <!-- SIGN UP FORM -->
+        <form id="formSignup" class="auth-form">
+          <h2 class="auth-title" id="authTitle">Create an account</h2>
+          <input class="form-input" type="text" placeholder="Username" required />
+          <input class="form-input" type="email" placeholder="Email address" required />
+          <div class="password-wrap">
+            <input class="form-input" type="password" id="signupPassword" placeholder="Create a strong password" required />
+            <button class="eye-btn" type="button" id="toggleSignupPass" aria-label="Toggle password visibility">
+              <i class="fa-regular fa-eye"></i>
+            </button>
+          </div>
+          <div class="strength-meter">
+            <div class="strength-label">
+              <span>Password strength:</span>
+              <span id="strengthText">Weak</span>
+            </div>
+            <div class="strength-bars">
+              <div class="bar" id="bar1"></div>
+              <div class="bar" id="bar2"></div>
+              <div class="bar" id="bar3"></div>
+              <div class="bar" id="bar4"></div>
+            </div>
+          </div>
+          <div class="requirements">
+            <div class="req" id="reqLen"><i class="fa-regular fa-circle-xmark"></i> At least 8 characters</div>
+            <div class="req" id="reqUp"><i class="fa-regular fa-circle-xmark"></i> At least one uppercase letter</div>
+            <div class="req" id="reqNum"><i class="fa-regular fa-circle-xmark"></i> At least one number</div>
+            <div class="req" id="reqSpec"><i class="fa-regular fa-circle-xmark"></i> At least one special character</div>
+          </div>
+          <button class="btn btn--primary btn--full" type="submit">Sign Up</button>
+        </form>
+
+        <!-- LOGIN FORM -->
+        <form id="formLogin" class="auth-form auth-form--hidden">
+          <h2 class="auth-title">Welcome back</h2>
+          <div class="login-error login-error--hidden" id="loginErrorMsg">
+            <i class="fa-solid fa-circle-exclamation"></i> Invalid username or password
+          </div>
+          <input class="form-input" type="text" id="loginUser" placeholder="Username or Email" required />
+          <div class="password-wrap">
+            <input class="form-input" type="password" id="loginPass" placeholder="Password" required />
+            <button class="eye-btn" type="button" id="toggleLoginPass" aria-label="Toggle password visibility">
+              <i class="fa-regular fa-eye"></i>
+            </button>
+          </div>
+          <div class="login-extras">
+            <label class="checkbox-container">
+              <input type="checkbox" id="rememberMe">
+              <span class="checkmark"></span>
+              Remember me
+            </label>
+            <a href="#" class="forgot-link" id="forgotPasswordLink">Forgot password?</a>
+          </div>
+          <button class="btn btn--primary btn--full" type="submit">Log In</button>
+          <div class="divider"><span>or continue with</span></div>
+          <div class="social-login">
+            <button class="social-btn" type="button"><i class="fa-brands fa-google"></i> Google</button>
+            <button class="social-btn" type="button"><i class="fa-brands fa-apple"></i> Apple</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===== DASHBOARD SCREEN ===== -->
+    <section class="screen screen--hidden" id="screenDashboard">
+      <div class="dashboard-layout">
+
+        <!-- LEFT PANEL -->
+        <div class="dashboard-left">
+          <h1 class="greeting" id="greetingText">Hi Guest!</h1>
+          <div class="divider-line"></div>
+
+          <!-- Streak Section -->
+          <div class="streak-section">
+            <div class="streak-header">
+              <h3>Your Streak</h3>
+              <a href="#" class="streak-extend" id="extendStreakBtn">EXTEND STREAK</a>
+            </div>
+            <div class="streak-calendar" id="streakCalendar">
+              <div class="streak-day">
+                <span class="day-label">Mo</span>
+                <div class="day-circle day-circle--active"></div>
+              </div>
+              <div class="streak-day">
+                <span class="day-label">Tu</span>
+                <div class="day-circle"></div>
+              </div>
+              <div class="streak-day">
+                <span class="day-label">We</span>
+                <div class="day-circle"></div>
+              </div>
+              <div class="streak-day">
+                <span class="day-label">Th</span>
+                <div class="day-circle"></div>
+              </div>
+              <div class="streak-day">
+                <span class="day-label">Fr</span>
+                <div class="day-circle"></div>
+              </div>
+              <div class="streak-day">
+                <span class="day-label">Sa</span>
+                <div class="day-circle"></div>
+              </div>
+              <div class="streak-day">
+                <span class="day-label">Su</span>
+                <div class="day-circle"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stats Section -->
+          <div class="stats-section">
+            <div class="stats-header">
+              <h3>Your Stats</h3>
+              <a href="#" class="stats-view-all" id="viewAllStatsBtn">VIEW ALL STATS</a>
+            </div>
+            <div class="stats-card">
+              <p class="stats-card-title">All-time high scores</p>
+              <div class="stats-grid">
+                <div class="stats-item">
+                  <span class="stats-score" id="classicScore">-</span>
+                  <span class="stats-label">Classic</span>
+                </div>
+                <div class="stats-item">
+                  <span class="stats-score" id="survivalScore">-</span>
+                  <span class="stats-label">Survival</span>
+                </div>
+                <div class="stats-item">
+                  <span class="stats-score" id="timedScore">-</span>
+                  <span class="stats-label">Timed</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent Activity -->
+          <div class="activity-section">
+            <h3>Recent Activity</h3>
+            <div class="activity-list">
+              <div class="activity-item">
+                <div class="activity-dot activity-dot--green"></div>
+                <div class="activity-details">
+                  <p><strong>Algebra challenge</strong> completed</p>
+                  <span>5 minutes ago</span>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-dot activity-dot--gold"></div>
+                <div class="activity-details">
+                  <p><strong>Perfect score</strong> on fractions quiz</p>
+                  <span>2 hours ago</span>
+                </div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-dot activity-dot--purple"></div>
+                <div class="activity-details">
+                  <p><strong>New achievement</strong> Math Wizard</p>
+                  <span>Yesterday</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT PANEL: Game Card -->
+        <div class="dashboard-right">
+          <div class="game-card">
+            <div class="game-card-header">
+              <div class="sm-icon sm-icon--game">
+                <span class="sm-icon-grid">
+                  <span>+</span><span>-</span>
+                  <span>&times;</span><span>&divide;</span>
+                </span>
+              </div>
+              <h2 class="game-card-title">ScaleMatics</h2>
+            </div>
+
+            <div class="game-card-user">
+              <span id="gameUsername">Guest</span>
+            </div>
+
+            <!-- Difficulty Selector -->
+            <div class="difficulty-selector" id="difficultySelector">
+              <button class="diff-btn diff-btn--active" data-diff="easy">Easy</button>
+              <button class="diff-btn" data-diff="medium">Medium</button>
+              <button class="diff-btn" data-diff="hard">Hard</button>
+            </div>
+
+            <!-- Start Challenge Button -->
+            <button class="btn btn--accent btn--full btn--game" id="btnStartChallenge">
+              START CHALLENGE
+            </button>
+
+            <!-- Quick Info -->
+            <div class="game-info">
+              <div class="game-info-item">
+                <i class="fa-regular fa-clock"></i>
+                <span>20 seconds per question</span>
+              </div>
+              <div class="game-info-item">
+                <i class="fa-solid fa-star"></i>
+                <span>Earn XP &amp; coins</span>
+              </div>
+              <div class="game-info-item">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Track your progress</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Logout -->
+          <button class="btn btn--outline btn--full btn--logout" id="btnLogout">Log Out</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CHALLENGE / GAME SCREEN ===== -->
+    <section class="screen screen--hidden" id="screenGame">
+      <div class="game-play-card">
+        <div class="game-play-header">
+          <div class="game-play-points">
+            <span>Points: </span><span id="gamePoints">0</span>
+          </div>
+          <div class="game-play-timer">
+            <i class="fa-regular fa-clock"></i>
+            <span id="gameTimer">20</span>s
+          </div>
+        </div>
+        <div class="game-play-question">
+          <h2 id="gameQuestion">349 + 6969 = ?</h2>
+        </div>
+        <div class="game-play-answers" id="gameAnswers">
+          <button class="answer-btn" data-answer="0">7318</button>
+          <button class="answer-btn" data-answer="1">7218</button>
+          <button class="answer-btn" data-answer="2">7308</button>
+          <button class="answer-btn" data-answer="3">7319</button>
+        </div>
+        <div class="game-play-progress">
+          <div class="game-progress-bar">
+            <div class="game-progress-fill" id="gameProgressFill" style="width: 0%"></div>
+          </div>
+          <span class="game-progress-text" id="gameProgressText">Question 1/10</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== LEARN SCREEN (placeholder) ===== -->
+    <section class="screen screen--hidden" id="screenLearn">
+      <div class="placeholder-screen">
+        <div class="placeholder-icon"><i class="fa-solid fa-book-open"></i></div>
+        <h2>Learn</h2>
+        <p>Explore math topics and lessons. Coming soon!</p>
+      </div>
+    </section>
+
+    <!-- ===== DAILY CHALLENGE SCREEN (placeholder) ===== -->
+    <section class="screen screen--hidden" id="screenChallenge">
+      <div class="placeholder-screen">
+        <div class="placeholder-icon"><i class="fa-solid fa-calendar-check"></i></div>
+        <h2>Daily Challenge</h2>
+        <p>Complete today's math challenge for bonus XP!</p>
+      </div>
+    </section>
+
+    <!-- ===== LEADERBOARD SCREEN (placeholder) ===== -->
+    <section class="screen screen--hidden" id="screenLeaderboard">
+      <div class="placeholder-screen">
+        <div class="placeholder-icon"><i class="fa-solid fa-ranking-star"></i></div>
+        <h2>Leaderboard</h2>
+        <p>See how you rank against other players. Coming soon!</p>
+      </div>
+    </section>
+
+    <!-- ===== SHOP SCREEN (placeholder) ===== -->
+    <section class="screen screen--hidden" id="screenShop">
+      <div class="placeholder-screen">
+        <div class="placeholder-icon"><i class="fa-solid fa-store"></i></div>
+        <h2>Shop</h2>
+        <p>Spend your coins on power-ups and themes. Coming soon!</p>
+      </div>
+    </section>
+
+    <!-- ===== COMMUNITY SCREEN (placeholder) ===== -->
+    <section class="screen screen--hidden" id="screenCommunity">
+      <div class="placeholder-screen">
+        <div class="placeholder-icon"><i class="fa-solid fa-people-group"></i></div>
+        <h2>Community</h2>
+        <p>Connect with fellow math enthusiasts. Coming soon!</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="main-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="sm-icon sm-icon--small">
+          <span class="sm-icon-grid">
+            <span>+</span><span>-</span>
+            <span>&times;</span><span>&divide;</span>
+          </span>
+        </div>
+        <span>ScaleMatics</span>
+      </div>
+      <div class="footer-links">
+        <a href="#">About</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Help</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 ScaleMatics. All rights reserved.</p>
     </div>
+  </footer>
+
+  <!-- ===== FORGOT PASSWORD MODAL ===== -->
+  <div id="forgotPasswordModal" class="modal modal--hidden">
+    <div class="modal-content">
+      <button class="modal-close" id="closeForgotModal" aria-label="Close modal">&times;</button>
+      <div class="modal-header">
+        <div class="modal-icon"><i class="fa-solid fa-lock"></i></div>
+        <h2>Forgot password?</h2>
+        <p class="modal-subtext">No worries, we'll send you reset instructions.</p>
+      </div>
+      <div class="modal-body">
+        <div class="input-group-modal">
+          <label for="resetEmail"><i class="fa-regular fa-envelope"></i> Email address</label>
+          <input type="email" id="resetEmail" class="form-input" placeholder="your@email.com" autocomplete="off">
+          <div class="input-hint"><i class="fa-regular fa-shield"></i> We'll send a secure 1-hour link</div>
+        </div>
+        <div class="modal-actions">
+          <button class="btn btn--ghost" id="cancelForgotBtn"><i class="fa-solid fa-arrow-left"></i> Back</button>
+          <button class="btn btn--accent" id="sendResetLinkBtn">
+            <span class="btn-text"><i class="fa-regular fa-paper-plane"></i> Send reset link</span>
+            <span class="btn-loader btn-loader--hidden"><i class="fa-solid fa-circle-notch fa-spin"></i> Sending...</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SUCCESS TOAST ===== -->
+  <div id="successToast" class="toast toast--hidden">
+    <div class="toast-content">
+      <div class="toast-icon toast-icon--success"><i class="fa-regular fa-circle-check"></i></div>
+      <div class="toast-message">
+        <h4>Success!</h4>
+        <p id="toastMessage">Action completed successfully</p>
+      </div>
+      <button class="toast-close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="toast-progress"></div>
+  </div>
+
+  <!-- ===== ERROR TOAST ===== -->
+  <div id="errorToast" class="toast toast--hidden">
+    <div class="toast-content">
+      <div class="toast-icon toast-icon--error"><i class="fa-regular fa-circle-xmark"></i></div>
+      <div class="toast-message">
+        <h4>Oops!</h4>
+        <p class="error-message">Something went wrong</p>
+      </div>
+      <button class="toast-close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="toast-progress"></div>
+  </div>
+
+  <script src="index.js"></script>
 </body>
 </html>
-
