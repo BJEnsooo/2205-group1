@@ -1,70 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mark Joseph Canillas - Profile</title>
-    
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-        .profile-pic {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin-bottom: 20px;
-            border: 3px solid #333;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        h1 {
-            color: #333;
-            text-align: center;
-        }
-        .details {
-            background-color: #fff;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .fun-fact, .motto {
-            background-color: #fff;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-    </style>
-</head>
-<body>
-    <h1>Mark Joseph Canillas</h1>
-    <img src="https://via.placeholder.com/150" alt="Profile Picture" class="profile-pic"> <!-- Replace with your actual image URL -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ScaleMatics | SM Icon Challenge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="brand">
+        <div class="logo-badge">SM</div>
+        <div>
+          <p class="brand-name">ScaleMatics</p>
+          <p class="brand-note">Solo Challenge Mode</p>
+        </div>
+      </div>
+      <div class="header-note">
+        <span class="note-pill">Featured Challenge</span>
+        <span class="note-pill">SM Icon Edition</span>
+      </div>
+    </header>
 
-    <div class="details">
-        <h2>Details</h2>
-        <ul>
-            <li><strong>Gender:</strong> Male</li>
-            <li><strong>Age:</strong> 12 years old</li>
-            <li><strong>Year:</strong> 2nd Year College - BSIT (Bachelor of Science in Information Technology)</li>
-        </ul>
-    </div>
+    <main class="app-main">
+      <section class="featured">
+        <div class="featured-card">
+          <div class="featured-header">
+            <div>
+              <p class="eyebrow">Now Playing</p>
+              <h1>Math Sprint: One Question Showdown</h1>
+              <p class="subtitle">
+                Tap the best answer before the timer hits zero.
+              </p>
+            </div>
+            <div class="score-box">
+              <p>Points</p>
+              <h2 id="points">0</h2>
+              <span id="timer">20s</span>
+            </div>
+          </div>
 
-    <div class="fun-fact">
-        <h2>Fun Fact About Me</h2>
-        <p>I am very impatient so don't make me wait or I'll turn you into Barney, most of the time I love coding but I'm lazy to code, my dream is to become an IT professional but if not, I'll just marry an IT professional (hopefully I succeed in this path, it's a waste of the years I've spent).</p>
-    </div>
+          <div class="progress-wrapper">
+            <div class="progress-label">
+              <span>Progress</span>
+              <span id="progressText">0%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="progressFill"></div>
+            </div>
+          </div>
 
-    <div class="motto">
-        <h2>Motto</h2>
-        <p>The patient person gets tired when they grow up, I'm the testimony to that. JK</p>
-    </div>
-</body>
+          <div class="question-card">
+            <h2 id="question">349 + 6969 = ?</h2>
+            <div class="answers" id="answers">
+              <button class="answer-btn" data-answer="7318">7,318</button>
+              <button class="answer-btn" data-answer="7398">7,398</button>
+              <button class="answer-btn" data-answer="7281">7,281</button>
+              <button class="answer-btn" data-answer="7418">7,418</button>
+            </div>
+            <p class="feedback" id="feedback">Choose an answer to begin.</p>
+          </div>
+
+          <div class="action-row">
+            <button class="primary-btn" id="resetBtn">Try Again</button>
+            <button class="ghost-btn" id="showTipsBtn">Responsive Tips</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="tips" id="tipsSection">
+        <div class="tips-card">
+          <h3>Responsive Design Indicator Prompt</h3>
+          <p class="tips-subtitle">
+            Objective: Siguraduhing user-friendly ang interface ng ScaleMatics sa iba't ibang devices gaya ng phone, tablet, at desktop.
+          </p>
+          <ul>
+            <li>Malinaw at madaling mabasa ang tanong: “349 + 6969 = ?”</li>
+            <li>Button sizes at spacing ay sapat para sa pag-tap gamit ang daliri sa mobile devices.</li>
+            <li>Visual feedback galing sa buttons para sa tamang (green) at maling (red) sagot.</li>
+            <li>Progress bar at timer (Points at 20 seconds) ay maayos na nakikita anuman ang laki ng screen.</li>
+          </ul>
+          <p class="tips-subtitle">Testing Tips:</p>
+          <ul>
+            <li>I-resize ang browser para makita kung nag-aadjust nang maayos ang layout.</li>
+            <li>Gamitin ang mobile device simulators o actual devices para subukan ang touch targets at readability.</li>
+            <li>Siguraduhin na walang overlapping o napuputol na mga bahagi ng interface.</li>
+          </ul>
+          <p class="tips-footer">
+            Review Goal: Ang lahat ng UI components ay responsive at accessible, nagpapadali ng mabilis at tamang interaksyon kahit nasa anong device ang user.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <script src="index.js"></script>
+  </body>
 </html>
-
