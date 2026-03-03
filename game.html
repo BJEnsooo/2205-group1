@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ScaleMatics</title>
+    <link rel="stylesheet" href="game.css">
+</head>
+<body>
+<!-- dashboard -->
+<div class="dashboard" id="dashboard">
+    <h1>ScaleMatics</h1>
+    <button class="new-btn" onclick="openRules()">New Challenge</button>
+</div>
+
+<!-- rules modal -->
+<div class="modal" id="rulesModal">
+    <div class="modal-content">
+        <h2>Rules</h2>
+        <div class="rules-box">
+            <p>1. Answer the math questions correctly.</p>
+            <p>2. Each correct answer gives XP.</p>
+            <p>3. You have limited time per question.</p>
+            <p>4. Reach the highest score!</p>
+        </div>
+        <div class="terms">
+            <input type="checkbox" id="agreeCheckbox">
+            <label for="agreeCheckbox">I understand the <u>Terms and Conditions</u></label>
+        </div>
+        <button class="accept-btn" id="acceptBtn" disabled>Accept</button>
+    </div> 
+</div>
+
+<!-- LOADING SCREEN - with dynamic mode -->
+<div id="loadingScreen" data-mode="easy">
+    <div class="easy-banner" id="loadingBanner">
+        <h1 id="modeTitle">EASY MODE</h1>
+    </div>
+    <p class="sentence" id="sentenceText">Simple addition, subtraction, multiplication, division</p>
+    <div class="progress-track">
+        <div id="progressBar"></div>
+    </div>
+</div>
+
+<!-- main game screen (fixed layout) -->
+<div class="game" id="gameScreen">
+    <div class="game-header">
+        <div class="header-labels">Easy mode</div>
+        <div class="game-progress-bg">
+            <div class="game-progress-fill" id="progressFill" style="width: 0%;"></div>
+        </div>
+    </div>
+
+    <div class="game-stats">
+        <div class="stat-box points" id="pointsDisplay">Points 0</div>
+        <div class="stat-box timer" id="timerDisplay">20 seconds</div>
+    </div>
+
+    <div class="question-container">
+        <h1 id="questionText">0 + 0 = ?</h1>
+    </div>
+
+    <!-- answer grid (2x2) -->
+    <div class="answer-grid" id="answerGrid">
+        <!-- JS will fill four buttons -->
+    </div>
+
+    <!-- big popup correct/wrong (hidden by default) -->
+    <div id="feedbackPop" class="feedback-pop"></div>
+
+    <!-- EXPLANATION AREA - detailed solution -->
+    <div id="explanationArea" class="explanation-container">
+        <div class="explanation-header">
+            <span class="explanation-label">📝 SOLUTION</span>
+            <span class="explanation-mode" id="explanationMode">🌱 Easy Mode</span>
+        </div>
+        
+        <div class="explanation-card">
+            <!-- Equation -->
+            <div class="solution-equation" id="solutionEquation">
+                5 + 3 = ?
+            </div>
+            
+            <!-- Steps (dynamic via JS) -->
+            <div class="solution-steps" id="solutionSteps">
+            </div>
+            
+            <!-- Final Answer -->
+            <div class="final-answer" id="finalAnswer">
+                ✅ Final Answer: <strong>0</strong>
+            </div>
+            
+            <!-- Tip -->
+            <div class="solution-tip" id="solutionTip">
+                💡 Tip: 
+            </div>
+        </div>
+    </div>
+
+    <!-- footer with pause & next -->
+    <div class="game-footer">
+        <button class="pause-btn" onclick="pauseGame()">⏸️ Pause</button>
+        <button id="nextBtn" class="next-pill-btn" onclick="nextQuestion()">▶ Next</button>
+    </div>
+</div>
+
+<!-- PAUSE MODAL -->
+<div class="modal-overlay" id="pauseModal">
+    <div class="modal-box">
+        <!-- CLOSE BUTTON (X) -->
+        <button class="modal-close-btn" onclick="closePauseModal()">✕</button>
+        
+        <div class="modal-header">
+            <span class="mode-tag">Easy mode</span>
+        </div>
+        
+        <div class="modal-progress">
+            <div class="progress-bar" id="pauseProgressBar"></div>
+        </div>
+        
+        <div class="modal-stats">
+            <div class="stat-points" id="pausePoints">Points 0</div>
+            <div class="stat-timer" id="pauseTimer">20 seconds</div>
+        </div>
+        
+        <h2 class="modal-title">Game Paused</h2>
+        
+        <!-- PAUSE OPTIONS -->
+        <div class="pause-options">
+            <button class="btn-resume" onclick="resumeGame()">▶ Resume Game</button>
+            <button class="btn-forfeit-pause" onclick="showForfeitConfirm()">⛔ Forfeit Quiz</button>
+        </div>
+        
+        <!-- FORFEIT CONFIRMATION -->
+        <div id="forfeitConfirmBox" style="display: none; margin-top: 30px;">
+            <hr style="margin: 20px 0; border: 1px solid #ddd;">
+            <p style="font-size: 1.5rem; margin-bottom: 20px;">Forfeit the quiz and start over?</p>
+            <div style="display: flex; justify-content: center; gap: 15px;">
+                <button class="btn-back-small" onclick="hideForfeitConfirm()">Cancel</button>
+                <button class="btn-forfeit-confirm" onclick="confirmForfeit()">Yes, Forfeit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="results-screen" id="resultsScreen">
+    <div class="results-card">
+        <!-- Header with Mode -->
+        <div class="results-header">
+            <span class="statistics-tag">Statistics</span>
+            <span class="mode-tag-results">Easy mode</span>
+        </div>
+        
+        <!-- Quiz Completed -->
+        <h1 class="quiz-completed">QUIZ COMPLETED!</h1>
+        
+        <!-- Score -->
+        <div class="score-circle" id="scoreCircle">
+            <span class="score-value" id="finalScore">80</span>
+            <span class="score-label">pts</span>
+        </div>
+        
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="stat-label">Correct Answers:</span>
+                <span class="stat-value correct-value" id="correctCount">8</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Wrong Answers:</span>
+                <span class="stat-value wrong-value" id="wrongCount">2</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Time Spent:</span>
+                <span class="stat-value time-value" id="timeSpent">01:35</span>
+            </div>
+        </div>
+        
+        <!-- Feedback -->
+        <div class="feedback-section">
+            <span class="feedback-label">Feedback:</span>
+            <div class="feedback-bubble" id="feedbackText">"Great job! You're improving!"</div>
+        </div>
+        
+        <!-- Action Buttons -->
+        <div class="results-actions">
+            <button class="play-again-btn" onclick="playAgain()">▶ Play Again</button>
+            <button class="main-menu-btn" onclick="mainMenu()">🏠 Main Menu</button>
+        </div>
+    </div>
+</div>
+
+<!-- MODE SELECTION MODAL -->
+<div class="modal" id="modeModal">
+    <div class="modal-content mode-modal-content">
+        <h2 class="mode-title">Select Difficulty</h2>
+        
+        <div class="mode-options">
+            <!-- EASY MODE CARD -->
+            <div class="mode-card easy-mode-card" onclick="selectMode('easy')">
+                <div class="mode-icon">🌱</div>
+                <h3>Easy Mode</h3>
+                
+                <div class="mode-operators">
+                    <div class="operator-row">
+                        <span class="operator-badge">+</span>
+                        <span class="operator-badge">−</span>
+                        <span class="operator-badge">×</span>
+                        <span class="operator-badge">÷</span>
+                    </div>
+                </div>
+                
+                <div class="mode-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Time:</span>
+                        <span class="detail-value">20 seconds</span>
+                    </div>
+                </div>
+                
+                <div class="mode-badge">Perfect for beginners</div>
+            </div>
+            
+            <!-- MEDIUM MODE CARD -->
+            <div class="mode-card medium-mode-card" onclick="selectMode('medium')">
+                <div class="mode-icon">⚡</div>
+                <h3>Medium Mode</h3>
+                
+                <div class="mode-operators">
+                    <div class="operator-row">
+                        <span class="operator-badge">+</span>
+                        <span class="operator-badge">−</span>
+                        <span class="operator-badge">×</span>
+                        <span class="operator-badge">÷</span>
+                    </div>
+                </div>
+                
+                <div class="mode-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Time:</span>
+                        <span class="detail-value">15 seconds</span>
+                    </div>
+                </div>
+                
+                <div class="mode-badge">Getting challenging</div>
+            </div>
+            
+            <!-- HARD MODE CARD -->
+            <div class="mode-card hard-mode-card" onclick="selectMode('hard')">
+                <div class="mode-icon">🔥</div>
+                <h3>Hard Mode</h3>
+                
+                <div class="mode-operators">
+                    <div class="operator-row">
+                        <span class="operator-badge">+</span>
+                        <span class="operator-badge">−</span>
+                        <span class="operator-badge">×</span>
+                        <span class="operator-badge">÷</span>
+                    </div>
+                </div>
+                
+                <div class="mode-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Time:</span>
+                        <span class="detail-value">10 seconds</span>
+                    </div>
+                </div>
+                
+                <div class="mode-badge">For math masters</div>
+            </div>
+        </div>
+        
+        <!-- Close button -->
+        <div class="mode-modal-footer">
+            <button class="close-mode-btn" onclick="closeModeModal()">Cancel</button>
+        </div>
+    </div>
+</div>  
+
+<script src="game.js"></script>
+</body>
+</html>
